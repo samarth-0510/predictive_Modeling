@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Heart Risk Predictor</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Heart Failure Risk Predictor</h1>
+    <form method="POST" action="/predict">
+      {% for field in [
+        "age", "anaemia", "creatinine_phosphokinase", "diabetes",
+        "ejection_fraction", "high_blood_pressure", "platelets",
+        "serum_creatinine", "serum_sodium", "sex", "smoking", "time"] %}
+        <label>{{ field.replace('_', ' ').capitalize() }}:</label>
+        <input type="number" step="any" name="{{ field }}" required><br>
+      {% endfor %}
+      <button type="submit">Predict</button>
+    </form>
+    <h2>{{ prediction_text }}</h2>
+  </div>
+</body>
+</html>
